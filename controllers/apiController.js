@@ -1,23 +1,19 @@
-// TODO: listar pontos de interesse da BD
+const pontoInteresseModel = require('../models/pontoInteresseModel');
+
 exports.details = function (req, res) {
     res.send({type: 'GET'});
 };
 
-// TODO: adicionar novo ponto de interesse
-exports.add = function (req, res) {
-    console.log('You made a POST request: ', req.body);
-    res.send({
-     type: 'POST',
-     name: req.body.name,
-     rank: req.body.rank });
-  };
+exports.create = function (req, res) {
+    pontoInteresseModel.create(req.body).then(function(pontoInteresse){
+    res.send(pontoInteresse);
+    });
+};
 
-// TODO: atualizar ponto de interesse
 exports.update = function (req, res) {
     res.send({type: 'PUT'});
 };
 
-// TODO: apagar ponto de interesse
 exports.delete = function (req, res) {
     res.send({type: 'DELETE'});
 };
