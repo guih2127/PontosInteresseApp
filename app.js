@@ -24,10 +24,13 @@ app.get('/', function(req, res){
   res.send('Endpoint inválido.');
 });
 
+app.use(function(err, req, res, next){
+  console.log(err);
+  res.status(422).send({error: err.message});
+});
+
 let port = 5000;
 
 app.listen(process.env.port || port, () =>{
   console.log('Servidor em execução no porto: '+ port);
 });
-
-// continuar do topico . Criar middleware para tratar erros ocorridos nas rotas
